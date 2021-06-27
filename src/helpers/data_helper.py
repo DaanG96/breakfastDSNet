@@ -19,7 +19,6 @@ class VideoDataset(object):
         dataset_name = str(video_path.parent)
         video_name = video_path.name
         video_file = self.datasets[dataset_name][video_name]
-
         seq = video_file['features'][...].astype(np.float32)
         gtscore = video_file['gtscore'][...].astype(np.float32)
         cps = video_file['change_points'][...].astype(np.int32)
@@ -29,11 +28,14 @@ class VideoDataset(object):
         user_summary = None
         if 'user_summary' in video_file:
             user_summary = video_file['user_summary'][...].astype(np.float32)
+        video_filename = None
+        if "video_name" in video_file:
+            video_filename = video_file["video_name"][...].astype(str)
 
         gtscore -= gtscore.min()
         gtscore /= gtscore.max()
 
-        return key, seq, gtscore, cps, n_frames, nfps, picks, user_summary
+        return key, seq, gtscore, cps, n_frames, nfps, picks, user_summary, video_filename
 
     def __len__(self):
         return len(self.keys)

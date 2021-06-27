@@ -41,7 +41,6 @@ def knapsack(values: Iterable[int],
     values = list(values)
     weights = list(weights)
     capacity = int(capacity)
-
     knapsack_solver.Init(values, [weights], [capacity])
     knapsack_solver.Solve()
     packed_items = [x for x in range(0, len(weights))
@@ -74,20 +73,21 @@ def get_keyshot_summ(pred: np.ndarray,
     """
     assert pred.shape == picks.shape
     picks = np.asarray(picks, dtype=np.int32)
-
     # Get original frame scores from downsampled sequence
     frame_scores = np.zeros(n_frames, dtype=np.float32)
     for i in range(len(picks)):
         pos_lo = picks[i]
         pos_hi = picks[i + 1] if i + 1 < len(picks) else n_frames
         frame_scores[pos_lo:pos_hi] = pred[i]
-
     # Assign scores to video shots as the average of the frames.
     seg_scores = np.zeros(len(cps), dtype=np.int32)
     for seg_idx, (first, last) in enumerate(cps):
+        if first == last:
+            break
         scores = frame_scores[first:last + 1]
+        if len(scores) == 0:
+            break
         seg_scores[seg_idx] = int(1000 * scores.mean())
-
     # Apply knapsack algorithm to find the best shots
     limits = int(n_frames * proportion)
     packed = knapsack(seg_scores, nfps, limits)
@@ -97,7 +97,7 @@ def get_keyshot_summ(pred: np.ndarray,
     for seg_idx in packed:
         first, last = cps[seg_idx]
         summary[first:last + 1] = True
-
+    # print("returning summary")
     return summary
 
 
@@ -114,9 +114,8 @@ def bbox2summary(seq_len: int,
     for bbox_idx in range(len(pred_bboxes)):
         lo, hi = pred_bboxes[bbox_idx, 0], pred_bboxes[bbox_idx, 1]
         score[lo:hi] = np.maximum(score[lo:hi], [pred_cls[bbox_idx]])
-
     pred_summ = get_keyshot_summ(score, change_points, n_frames, nfps, picks)
-    return pred_summ
+    return pred_summ, score
 
 
 def get_summ_diversity(pred_summ: np.ndarray,
@@ -157,19 +156,24 @@ def get_summ_f1score(pred_summ: np.ndarray,
     pred_summ = np.asarray(pred_summ, dtype=np.bool)
     test_summ = np.asarray(test_summ, dtype=np.bool)
     _, n_frames = test_summ.shape
-
+    # print(test_summ)
     if pred_summ.size > n_frames:
         pred_summ = pred_summ[:n_frames]
     elif pred_summ.size < n_frames:
         pred_summ = np.pad(pred_summ, (0, n_frames - pred_summ.size))
-
+    # print(pred_summ)
     f1s = [f1_score(user_summ, pred_summ) for user_summ in test_summ]
-
+    # print(f1s)
     if eval_metric == 'avg':
         final_f1 = np.mean(f1s)
     elif eval_metric == 'max':
+        # index = f1s.index(max(f1s))
+        # print(index)
         final_f1 = np.max(f1s)
     else:
         raise ValueError(f'Invalid eval metric {eval_metric}')
 
     return float(final_f1)
+
+def get_similar_frame(index, pred_summ, test_summ):
+    return 0

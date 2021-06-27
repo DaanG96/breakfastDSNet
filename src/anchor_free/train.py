@@ -35,7 +35,7 @@ def train(args, split, save_path):
         stats = data_helper.AverageMeter('loss', 'cls_loss', 'loc_loss',
                                          'ctr_loss')
 
-        for _, seq, gtscore, change_points, n_frames, nfps, picks, _ in train_loader:
+        for _, seq, gtscore, change_points, n_frames, nfps, picks, _ , _ in train_loader:
             keyshot_summ = vsumm_helper.get_keyshot_summ(
                 gtscore, change_points, n_frames, nfps, picks)
             target = vsumm_helper.downsample_summ(keyshot_summ)
@@ -69,7 +69,7 @@ def train(args, split, save_path):
             stats.update(loss=loss.item(), cls_loss=cls_loss.item(),
                          loc_loss=loc_loss.item(), ctr_loss=ctr_loss.item())
 
-        val_fscore, _ = evaluate(model, val_loader, args.nms_thresh, args.device)
+        val_fscore, _ , _= evaluate(model, val_loader, args.nms_thresh, args.device)
 
         if max_val_fscore < val_fscore:
             max_val_fscore = val_fscore

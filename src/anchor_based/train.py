@@ -26,7 +26,6 @@ def train(args, split, save_path):
                   num_hidden=args.num_hidden, anchor_scales=args.anchor_scales,
                   num_head=args.num_head)
     model = model.to(args.device)
-
     model.apply(xavier_init)
 
     parameters = [p for p in model.parameters() if p.requires_grad]
@@ -45,11 +44,10 @@ def train(args, split, save_path):
         model.train()
         stats = data_helper.AverageMeter('loss', 'cls_loss', 'loc_loss')
 
-        for _, seq, gtscore, cps, n_frames, nfps, picks, _ in train_loader:
+        for fi, seq, gtscore, cps, n_frames, nfps, picks, _, _ in train_loader:
             keyshot_summ = vsumm_helper.get_keyshot_summ(
                 gtscore, cps, n_frames, nfps, picks)
             target = vsumm_helper.downsample_summ(keyshot_summ)
-
             if not target.any():
                 continue
 
@@ -59,7 +57,6 @@ def train(args, split, save_path):
             # Get class and location label for positive samples
             cls_label, loc_label = anchor_helper.get_pos_label(
                 anchors, target_bboxes, args.pos_iou_thresh)
-
             # Get negative samples
             num_pos = cls_label.sum()
             cls_label_neg, _ = anchor_helper.get_pos_label(
@@ -82,7 +79,6 @@ def train(args, split, save_path):
             loc_label = torch.tensor(loc_label, dtype=torch.float32).to(args.device)
 
             seq = torch.tensor(seq, dtype=torch.float32).unsqueeze(0).to(args.device)
-
             pred_cls, pred_loc = model(seq)
 
             loc_loss = calc_loc_loss(pred_loc, loc_label, cls_label)
@@ -97,7 +93,7 @@ def train(args, split, save_path):
             stats.update(loss=loss.item(), cls_loss=cls_loss.item(),
                          loc_loss=loc_loss.item())
 
-        val_fscore, _ = evaluate(model, val_loader, args.nms_thresh, args.device)
+        val_fscore, _ , _= evaluate(model, val_loader, args.nms_thresh, args.device)
 
         if max_val_fscore < val_fscore:
             max_val_fscore = val_fscore

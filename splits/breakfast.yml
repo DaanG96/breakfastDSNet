@@ -1,0 +1,65 @@
+- test_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P25_cam01_P25_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_cam01_P51_juice
+  train_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P10_webcam01_P10_coffee
+  - ../datasets/breakfast_summarization_dataset.hdf5/P07_cam01_P07_scrambledegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P42_cam02_P42_salat
+  - ../datasets/breakfast_summarization_dataset.hdf5/P46_cam01_P46_tea
+  - ../datasets/breakfast_summarization_dataset.hdf5/P37_cam01_P37_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_friedegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_webcam01_P51_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P40_cam02_P40_milk
+- test_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P37_cam01_P37_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P40_cam02_P40_milk
+  train_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_cam01_P51_juice
+  - ../datasets/breakfast_summarization_dataset.hdf5/P10_webcam01_P10_coffee
+  - ../datasets/breakfast_summarization_dataset.hdf5/P07_cam01_P07_scrambledegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P42_cam02_P42_salat
+  - ../datasets/breakfast_summarization_dataset.hdf5/P46_cam01_P46_tea
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_friedegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_webcam01_P51_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P25_cam01_P25_cereals
+- test_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P37_cam01_P37_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P25_cam01_P25_cereals
+  train_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_cam01_P51_juice
+  - ../datasets/breakfast_summarization_dataset.hdf5/P10_webcam01_P10_coffee
+  - ../datasets/breakfast_summarization_dataset.hdf5/P07_cam01_P07_scrambledegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P42_cam02_P42_salat
+  - ../datasets/breakfast_summarization_dataset.hdf5/P46_cam01_P46_tea
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_friedegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_webcam01_P51_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P40_cam02_P40_milk
+- test_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P42_cam02_P42_salat
+  - ../datasets/breakfast_summarization_dataset.hdf5/P46_cam01_P46_tea
+  train_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_cam01_P51_juice
+  - ../datasets/breakfast_summarization_dataset.hdf5/P10_webcam01_P10_coffee
+  - ../datasets/breakfast_summarization_dataset.hdf5/P07_cam01_P07_scrambledegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P37_cam01_P37_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_friedegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_webcam01_P51_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P25_cam01_P25_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P40_cam02_P40_milk
+- test_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P25_cam01_P25_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P46_cam01_P46_tea
+  train_keys:
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_cam01_P51_juice
+  - ../datasets/breakfast_summarization_dataset.hdf5/P10_webcam01_P10_coffee
+  - ../datasets/breakfast_summarization_dataset.hdf5/P07_cam01_P07_scrambledegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P42_cam02_P42_salat
+  - ../datasets/breakfast_summarization_dataset.hdf5/P37_cam01_P37_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_friedegg
+  - ../datasets/breakfast_summarization_dataset.hdf5/P51_webcam01_P51_cereals
+  - ../datasets/breakfast_summarization_dataset.hdf5/P03_webcam02_P03_sandwich
+  - ../datasets/breakfast_summarization_dataset.hdf5/P40_cam02_P40_milk

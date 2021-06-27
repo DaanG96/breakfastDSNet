@@ -1,7 +1,7 @@
 # ide
 .vscode/
 .idea/
-
+env/
 # macos
 .DS_Store
 __MACOSX/
@@ -10,7 +10,8 @@ __MACOSX/
 __pycache__/
 .pytest_cache/
 .coverage
-
+*.bat
+*.json
 # project
 /models/
 /datasets/
